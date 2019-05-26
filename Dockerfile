@@ -32,7 +32,7 @@ pip3 install notmuchtask task
 RUN mkdir -p /home/user/ \
     && chmod -R 777 /home/user
 
-ADD ./entrypoint /home/user/entrypoint
+ADD ./entrypoint /entrypoint
 WORKDIR /home/user
 
-ENTRYPOINT /home/user/entrypoint
+ENTRYPOINT /entrypoint
