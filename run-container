@@ -15,12 +15,8 @@ my_notmuch_config=$(realpath "${HOME}/.notmuch-config")
 docker run --rm -ti \
             -e USER_ID=$(id -u) \
             -e GROUP_ID=$(id -g) \
+            --mount type=bind,src="${HOME}",dst=/home/user,consistency=default \
             --mount type=bind,src="${my_maildir}",dst=/home/user/Mail,consistency=default \
-            --mount type=bind,src="${my_taskrc}",dst=/home/user/.taskrc,consistency=default \
-            --mount type=bind,src="${my_taskdir}",dst=/home/user/.task,consistency=default \
-            --mount type=bind,src="${my_afew_config}",dst=/home/user/.config/afew,consistency=default,ro \
-            --mount type=bind,src="${my_neomutt_config}",dst=/home/user/.config/neomutt,consistency=default,ro \
-            --mount type=bind,src="${my_notmuch_config}",dst=/home/user/.notmuch-config,consistency=default,ro \
   mailenv
 
 
