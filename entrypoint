@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#addgroup -g ${GROUP_ID:-1000} user
+adduser -D -h /home/user -s /bin/sh -u  ${USER_ID:-1000} -g user user
+
+if [ $# = 0 ]; then
+  #su -l user
+  exec sudo -u user -i
+else
+  # TODO
+  #su -l  user
+  exec sudo -u user -i
+fi
