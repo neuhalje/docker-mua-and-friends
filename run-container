@@ -13,7 +13,7 @@ my_notmuch_config=$(realpath "${HOME}/.notmuch-config")
 
 
 docker run --rm -ti \
-            -e USER_ID=$(id -u) \
+            -e USER_ID=${USER_ID:-$(id -u)} \
             -e GROUP_ID=$(id -g) \
             --mount type=bind,src="${HOME}",dst=/home/user,consistency=default \
             --mount type=bind,src="${my_maildir}",dst=/home/user/Mail,consistency=default \

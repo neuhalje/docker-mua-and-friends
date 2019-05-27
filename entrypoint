@@ -1,13 +1,19 @@
 #!/bin/sh
+USER_ID=${USER_ID:-1000}
 
-#addgroup -g ${GROUP_ID:-1000} user
-adduser -D -h /home/user -s /bin/sh -u  ${USER_ID:-1000} -g user user
+# Create user if it does not exist
+ENTRY=$(getent passwd $USER_ID)
+
+if [ $? = 0 ]; then
+  USER=$(echo $ENTRY|cut -d: -f1)
+else
+  adduser -D -h /home/user -s /bin/sh -u  ${USER_ID} -g user user
+  USER=user
+fi
 
 if [ $# = 0 ]; then
-  #su -l user
-  exec sudo -u user -i
+  exec sudo -u $USER -i
 else
-  # TODO
-  #su -l  user
-  exec sudo -u user -i
+  # TODO: pass args
+  exec sudo -u $USER -i
 fi
